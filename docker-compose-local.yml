@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: public.ecr.aws/aws-dynamodb-local/aws-dynamodb-local:latest
+    restart: always
+    container_name: ponto_dbhost
+    environment:
+      - AWS_REGION=us-east-2
+      - AWS_ACCESS_KEY=ponto_dbhost
+      - AWS_SECRET_KEY=dynamo
+      - AWS_DYNAMODB_ENDPOINT=http://localhost:5435
+    ports:
+      - "5435:5432"

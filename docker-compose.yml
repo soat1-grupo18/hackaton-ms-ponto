@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ponto_app
+    restart: always
+    ports:
+      - "8083:8080"
+    depends_on:
+      - db
+    environment:
+      - AWS_REGION="$${{ secrets.AWS_REGION }}"
+      - AWS_ACCESS_KEY="$${{ secrets.AWS_ACCESS_KEY }}"
+      - AWS_SECRET_KEY="$${{ secrets.AWS_SECRET_KEY }}"
+      - AWS_DYNAMODB_ENDPOINT="$${{ secrets.AWS_DYNAMODB_ENDPOINT }}"
+
+  db:
+    image: public.ecr.aws/aws-dynamodb-local/aws-dynamodb-local:latest
+    restart: always
+    container_name: ponto_dbhost
+    ports:
+      - "5435:5432"
