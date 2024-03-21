@@ -13,7 +13,7 @@ jobs:
   infrastructure:
     needs:
       - java-quality
-    uses: soat1-grupo18/fase4-reusable-github-workflows/.github/workflows/aws-terraform.yml@main
+    uses: soat1-grupo18/hackathon-reusable-github-workflows/.github/workflows/aws-terraform.yml@main
     with:
       aws-region: us-east-1
       terraform-directory-path: infrastructure
@@ -23,12 +23,15 @@ jobs:
   java-microservice:
     needs:
       - infrastructure
-    uses: soat1-grupo18/fase4-reusable-github-workflows/.github/workflows/java-microservice.yml@main
+    uses: soat1-grupo18/hackathon-reusable-github-workflows/.github/workflows/aws-ecs-java-microservice.yml@main
     with:
-      application-name: soat1-grupo18-ms-ponto
+      application-path: .
+      aws-region: us-east-1
+      container-name: ms-ponto
+      container-port: "8080"
+      ecs-cluster-name: fiap-hackathon
+      ecr-repository-name: ms-ponto
+      ecs-service-name: ms-ponto
       java-distribution: corretto
       java-version: "17"
-      kubernetes-cluster-name: fiap-cluster
-      kubernetes-manifest-directory-path: kubernetes
-      kubernetes-namespace: ms-ponto
     secrets: inherit
