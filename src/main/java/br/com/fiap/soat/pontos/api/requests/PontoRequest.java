@@ -1,4 +1,5 @@
 package br.com.fiap.soat.pontos.api.requests;
+
 import br.com.fiap.soat.pontos.entities.Ponto;
 
 import java.time.Instant;
@@ -22,12 +23,11 @@ public class PontoRequest {
     public String getId() {
         return id;
     }
+
     public String getUsuario() {
         return usuario;
     }
-    public String getUsername() {
-        return username;
-    }
+
     public String getData() {
         return data;
     }

@@ -12,8 +12,8 @@ public class UseCaseBeanConfig {
         return new CriarPontoUseCase(pontoGatewayPort);
     }
 
-    @Bean("obterPontoPorIdUseCasePort")
-    public ObterPontoPorUsuarioUseCasePort obterPontoPorUsuarioUseCasePort(PontoGatewayPort pontoGatewayPort) {
-        return new ObterPontoPorUsuarioUseCase(pontoGatewayPort);
+    @Bean("obterPontosPorIdUseCasePort")
+    public ObterPontosPorUsuarioUseCasePort obterPontoPorUsuarioUseCasePort(PontoGatewayPort pontoGatewayPort) {
+        return new ObterPontosPorUsuarioUseCase(pontoGatewayPort);
     }
 }
