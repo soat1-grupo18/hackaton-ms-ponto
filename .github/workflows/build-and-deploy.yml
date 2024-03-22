@@ -37,7 +37,7 @@ jobs:
       aws-region: us-east-1
       container-name: ms-ponto
       container-port: 8080
-      ecs-cluster-name: fiap-hackathon
+      ecs-cluster-name: fiap-ecs-cluster
       ecr-repository-name: ms-ponto
       ecs-service-name: ms-ponto
       java-distribution: corretto
