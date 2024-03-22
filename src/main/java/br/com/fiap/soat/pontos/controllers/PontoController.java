@@ -1,8 +1,7 @@
 package br.com.fiap.soat.pontos.controllers;
 
-import br.com.fiap.soat.pontos.api.requests.PontoRequest;
 import br.com.fiap.soat.pontos.interfaces.usecases.CriarPontoUseCasePort;
-import br.com.fiap.soat.pontos.interfaces.usecases.ObterPontoPorUsuarioUseCasePort;
+import br.com.fiap.soat.pontos.interfaces.usecases.ObterPontosPorUsuarioUseCasePort;
 import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.presenters.PontoPresenter;
 
@@ -11,13 +10,13 @@ import java.util.stream.Collectors;
 
 public class PontoController {
     private final CriarPontoUseCasePort criarPontoUseCase;
-    private final ObterPontoPorUsuarioUseCasePort obterPontoPorUsuarioUseCase;
+    private final ObterPontosPorUsuarioUseCasePort obterPontosPorUsuarioUseCase;
 
     public PontoController(CriarPontoUseCasePort criarPontoUseCase,
-                           ObterPontoPorUsuarioUseCasePort obterPontoPorUsuarioUseCase) {
+                           ObterPontosPorUsuarioUseCasePort obterPontosPorUsuarioUseCase) {
 
         this.criarPontoUseCase = criarPontoUseCase;
-        this.obterPontoPorUsuarioUseCase = obterPontoPorUsuarioUseCase;
+        this.obterPontosPorUsuarioUseCase = obterPontosPorUsuarioUseCase;
     }
 
     public PontoPresenter criarPonto(Ponto ponto) {
@@ -25,7 +24,7 @@ public class PontoController {
     }
 
     public List<PontoPresenter> obterPontosPorUsuario(String usuario) {
-        List<Pontos> pontos = obterPontoPorUsuarioUseCase.execute(usuario);
+        List<Ponto> pontos = obterPontosPorUsuarioUseCase.execute(usuario);
         return pontos.stream().map(PontoPresenter::fromDomain).collect(Collectors.toList());
     }
 }
