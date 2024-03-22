@@ -18,7 +18,3 @@ public class ObterPontosPorUsuarioUseCase implements ObterPontosPorUsuarioUseCas
         return pontoGatewayPort.obterPontosPorUsuario(usuario);
     }
 }
-
-
-
-

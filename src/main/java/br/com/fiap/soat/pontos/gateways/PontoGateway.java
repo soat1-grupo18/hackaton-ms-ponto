@@ -1,16 +1,13 @@
 package br.com.fiap.soat.pontos.gateways;
 
-import br.com.fiap.soat.pontos.api.requests.PontoRequest;
-import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.dynamodb.entities.PontoDynamoEntity;
 import br.com.fiap.soat.pontos.dynamodb.repositories.PontoRepository;
+import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.interfaces.gateways.PontoGatewayPort;
-
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component

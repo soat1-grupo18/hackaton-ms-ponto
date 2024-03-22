@@ -1,12 +1,14 @@
 package br.com.fiap.soat.pontos.presenters;
 import br.com.fiap.soat.pontos.entities.Ponto;
 
+import java.time.LocalDate;
+
 public class PontoPresenter {
     private String id;
     private String usuario;
-    private String data;
+    private LocalDate data;
 
-    public PontoPresenter(String id, String usuario, String data) {
+    public PontoPresenter(String id, String usuario, LocalDate data) {
         this.id = id;
         this.usuario = usuario;
         this.data = data;
@@ -26,7 +28,7 @@ public class PontoPresenter {
     public String getUsuario() {
         return usuario;
     }
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface PontoGatewayPort {
     List<Ponto> obterPontosPorUsuario(String usuario);
     Ponto criarPonto(Ponto ponto);
+
 }

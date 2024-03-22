@@ -3,19 +3,19 @@ package br.com.fiap.soat.pontos.api.requests;
 import br.com.fiap.soat.pontos.entities.Ponto;
 
 import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 public class PontoRequest {
     private String id;
     private String usuario;
+    private String data;
 
     Instant currentInstant = Instant.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    String data = formatter.format(currentInstant.atOffset(ZoneOffset.UTC));
 
     public Ponto toDomain() {
-        Ponto ponto = new Ponto(null, usuario, data);
+
+        LocalDate localDate = LocalDate.parse(data);
+        Ponto ponto = new Ponto(null, usuario, localDate);
 
         return ponto;
     }
