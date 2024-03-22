@@ -9,9 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class ControllerBeanConfig {
     @Bean
     public PontoController pontoController(CriarPontoUseCasePort criarPontoUseCase,
-                                                   ObterPontosPorUsuarioUseCasePort obterPontosPorUsuarioUseCase) {
-        return new PontoController(
-                criarPontoUseCase,
-                obterPontosPorUsuarioUseCase,
+            ObterPontosPorUsuarioUseCasePort obterPontosPorUsuarioUseCase) {
+
+        return new PontoController(criarPontoUseCase, obterPontosPorUsuarioUseCase);
     }
 }

@@ -16,7 +16,7 @@ public class PontoPresenter {
         return new PontoPresenter(
                 ponto.getId(),
                 ponto.getUsuario(),
-                ponto.getData(),
+                ponto.getData()
         );
     }
 
