@@ -3,6 +3,8 @@ package br.com.fiap.soat.pontos.api;
 import br.com.fiap.soat.pontos.api.requests.PontoRequest;
 import br.com.fiap.soat.pontos.controllers.PontoController;
 import br.com.fiap.soat.pontos.presenters.PontoPresenter;
+import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -32,8 +34,13 @@ public class PontoApi {
             @PathVariable(name = "usuario", required = true) String usuario) {
         List<PontoPresenter> pontos;
 
-        pontos = pontoController.obterPontosPorUsuario(usuario);
-
-        return ResponseEntity.ok(pontos);
+        try {
+            pontos = pontoController.obterPontosPorUsuario(usuario);
+            return ResponseEntity.ok(pontos);
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.ok(List.of());
+        } catch (Exception ex) {
+            return ResponseEntity.status(500).build();
+        }
     }
  }
