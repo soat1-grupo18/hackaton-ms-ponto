@@ -27,10 +27,6 @@ public class DynamoDBConfig {
     @Value("${aws.dynamodb.secretKey}")
     private String awsSecretAccessKey;
 
-    public DynamoDBConfig() {
-        System.setProperty("aws.region", "us-west-2");
-    }
-
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
     }
