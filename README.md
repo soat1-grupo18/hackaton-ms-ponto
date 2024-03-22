@@ -6,14 +6,13 @@ Microsserviço de Ponto criado durante o hackaton da Pós Tech Software Architec
 
 ![](https://github.com/pabloldias/soat1-grupo18/actions/workflows/build-and-test.yml/badge.svg)
 
-- [Hackaton](#tech-challenge)
+- [Hackaton - Microsserviço - Ponto](#hackaton---microsserviço---ponto)
+- [Hackaton](#hackaton)
   - [Alunos](#alunos)
   - [Tecnologias utilizadas](#tecnologias-utilizadas)
   - [Como rodar a aplicação via docker-compose?](#como-rodar-a-aplicação-via-docker-compose)
   - [Como rodar a aplicação via kubernetes?](#como-rodar-a-aplicação-via-kubernetes)
   - [Swagger](#swagger)
-  - [Insomnia](#insomnia)
-  - [Event Storming](#event-storming)
 
 
 ## Hackaton
