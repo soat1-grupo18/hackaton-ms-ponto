@@ -9,4 +9,5 @@ import java.util.List;
 @EnableScan
 public interface PontoRepository extends DynamoDBCrudRepository<PontoDynamoEntity, String> {
     List<PontoDynamoEntity> findByUsuario(String usuario);
+    List<PontoDynamoEntity> findByUsuarioAndDataBetween(String usuario, String dataInicial, String dataFinal);
 }

@@ -23,8 +23,8 @@ public class PontoController {
         return PontoPresenter.fromDomain(criarPontoUseCase.execute(ponto));
     }
 
-    public List<PontoPresenter> obterPontosPorUsuario(String usuario) {
-        List<Ponto> pontos = obterPontosPorUsuarioUseCase.execute(usuario);
+    public List<PontoPresenter> obterPontosPorUsuario(String usuario, String dataInicial, String dataFinal) {
+        List<Ponto> pontos = obterPontosPorUsuarioUseCase.execute(usuario, dataInicial, dataFinal);
         return pontos.stream().map(PontoPresenter::fromDomain).collect(Collectors.toList());
     }
 }

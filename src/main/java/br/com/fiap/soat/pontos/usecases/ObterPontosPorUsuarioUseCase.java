@@ -13,8 +13,7 @@ public class ObterPontosPorUsuarioUseCase implements ObterPontosPorUsuarioUseCas
         this.pontoGatewayPort = pontoGatewayPort;
     }
 
-    public List<Ponto> execute(String usuario) {
-
-        return pontoGatewayPort.obterPontosPorUsuario(usuario);
+    public List<Ponto> execute(String usuario, String dataInicial, String dataFinal) {
+        return pontoGatewayPort.obterPontosPorUsuario(usuario, dataInicial, dataFinal);
     }
 }
