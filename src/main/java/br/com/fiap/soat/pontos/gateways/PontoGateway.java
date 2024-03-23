@@ -6,6 +6,8 @@ import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.interfaces.gateways.PontoGatewayPort;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,12 +37,11 @@ public class PontoGateway implements PontoGatewayPort {
             entities = pontoRepository.findByUsuario(usuario);
         }
 
-        List<Ponto> pontos = entities.stream()
+        return entities.stream()
                 .filter(Objects::nonNull)
                 .map(PontoDynamoEntity::toDomain)
                 .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(ponto -> LocalDateTime.parse(ponto.getData())))
                 .collect(Collectors.toList());
-
-        return pontos;
     }
 }
