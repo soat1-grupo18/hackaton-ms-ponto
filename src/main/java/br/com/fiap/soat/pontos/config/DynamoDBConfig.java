@@ -24,6 +24,10 @@ public class DynamoDBConfig {
     @Value("${aws.dynamodb.secretKey}")
     private String awsSecretAccessKey;
 
+    public DynamoDBConfig() {
+        System.setProperty("aws.region", "us-west-2");
+    }
+
     public AWSCredentialsProvider amazonAWSCredentialsProvider() {
         return new AWSStaticCredentialsProvider(amazonAWSCredentials());
     }
@@ -33,11 +37,10 @@ public class DynamoDBConfig {
         return new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey);
     }
 
-
     @Bean(name = "amazonDynamoDB")
     public AmazonDynamoDB amazonDynamoDB() {
         try {
-            System.out.println("******** ABOUT TO CREATE DYNAMODBCLIENT *********");
+            System.out.println("\n ******** ABOUT TO CREATE DYNAMODBCLIENT ********* \n");
             return AmazonDynamoDBClientBuilder.standard()
                     .withCredentials(amazonAWSCredentialsProvider())
                     .withEndpointConfiguration(new AmazonDynamoDBClientBuilder.EndpointConfiguration(dynamoDbEndpoint, awsRegion))
