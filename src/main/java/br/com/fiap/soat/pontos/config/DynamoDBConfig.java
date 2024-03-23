@@ -27,7 +27,7 @@ public class DynamoDBConfig {
     private String awsSecretAccessKey;
 
     @Bean("amazonDynamoDB")
-    @Profile("!local")
+    @Profile("aws")
     public AmazonDynamoDB productionAmazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard()
             .withRegion(awsRegion)
@@ -35,7 +35,7 @@ public class DynamoDBConfig {
     }
 
     @Bean("amazonDynamoDB")
-    @Profile("local")
+    @Profile("!aws")
     public AmazonDynamoDB localAmazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard()
             .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKeyId, awsSecretAccessKey)))
