@@ -29,8 +29,15 @@ public class PontoGateway implements PontoGatewayPort {
     }
 
     @Override
-    public List<Ponto> obterPontosPorUsuario(String usuario) {
-        List<PontoDynamoEntity> entities = pontoRepository.findByUsuario(usuario);
+    public List<Ponto> obterPontosPorUsuario(String usuario, String dataInicial, String dataFinal) {
+        List<PontoDynamoEntity> entities;
+
+        if (dataInicial != null && dataFinal != null) {
+            entities = pontoRepository.findByUsuarioAndDataBetween(usuario, dataInicial, dataFinal);
+        } else {
+            entities = pontoRepository.findByUsuario(usuario);
+        }
+
         List<Ponto> pontos = entities.stream()
                 .filter(Objects::nonNull)
                 .map(PontoDynamoEntity::toDomain)

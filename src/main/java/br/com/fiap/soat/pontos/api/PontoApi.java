@@ -32,11 +32,18 @@ public class PontoApi {
     @Operation(summary = "Obter pontos", description = "Retorna uma lista de pontos filtrada por matrícula ou nome de usuário.")
     @GetMapping("/pontos/{usuario}")
     public ResponseEntity<List<PontoPresenter>> obterPontos(
-            @PathVariable(name = "usuario", required = true) String usuario) {
-        List<PontoPresenter> pontos;
+            @PathVariable(name = "usuario", required = true) String usuario,
+            @RequestParam(name = "data_inicial", required = false) String dataInicial,
+            @RequestParam(name = "data_final", required = false) String dataFinal) {
 
         try {
-            pontos = pontoController.obterPontosPorUsuario(usuario);
+            if (dataInicial != null && dataFinal == null) {
+                return ResponseEntity.status(400).build();
+            }
+
+            List<PontoPresenter> pontos;
+
+            pontos = pontoController.obterPontosPorUsuario(usuario, dataInicial, dataFinal);
             return ResponseEntity.ok(pontos);
         } catch (ResourceNotFoundException ex) {
             return ResponseEntity.ok(List.of());
