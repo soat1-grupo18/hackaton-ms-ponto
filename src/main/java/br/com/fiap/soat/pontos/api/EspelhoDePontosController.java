@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -24,8 +25,8 @@ public class EspelhoDePontosController {
     @Operation(summary = "Espelho de pontos", description = "Retorna o espelho de pontos referente ao último mês fechado do funcionário.")
     @GetMapping("/pontos/espelho-mes-anterior/{usuario}")
     public ResponseEntity<List<Ponto>> obterEspelhoDePontosUsuarioEPeriodo(@PathVariable String usuario) {
-        LocalDate dataInicio = LocalDate.now().minusMonths(1).withDayOfMonth(1);
-        LocalDate dataFim = LocalDate.now().minusMonths(1).withDayOfMonth(dataInicio.lengthOfMonth());
+        LocalDateTime dataInicio = LocalDateTime.now().minusMonths(1).withDayOfMonth(1);
+        LocalDateTime dataFim = LocalDateTime.now().minusMonths(1).withDayOfMonth(dataInicio.toLocalDate().lengthOfMonth()).withHour(23).withMinute(59).withSecond(59);
 
         List<Ponto> pontos = obterEspelhoDePontosUsuarioUseCase.obterEspelhoDePontosPorUsuarioEPeriodo(usuario, dataInicio, dataFim);
 
