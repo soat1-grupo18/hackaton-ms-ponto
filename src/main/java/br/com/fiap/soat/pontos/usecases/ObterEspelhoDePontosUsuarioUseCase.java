@@ -5,7 +5,7 @@ import br.com.fiap.soat.pontos.interfaces.gateways.PontoGatewayPort;
 import br.com.fiap.soat.pontos.interfaces.usecases.ObterEspelhoDePontosUsuarioUseCasePort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +18,8 @@ public class ObterEspelhoDePontosUsuarioUseCase implements ObterEspelhoDePontosU
     }
 
     @Override
-    public List<Ponto> obterEspelhoDePontosPorUsuarioEPeriodo(String usuario, LocalDate dataInicio, LocalDate dataFim) {
+    public List<Ponto> obterEspelhoDePontosPorUsuarioEPeriodo(String usuario, LocalDateTime dataInicio, LocalDateTime dataFim) {
         List<Ponto> pontosUsuario = pontoGatewayPort.obterPontosPorUsuario(usuario, dataInicio.toString(), dataFim.toString());
-        List<Ponto> pontosNoPeriodo = pontosUsuario.stream()
-                .filter(ponto -> LocalDate.parse(ponto.getData()).isAfter(dataInicio.minusDays(1)) && LocalDate.parse(ponto.getData()).isBefore(dataFim.plusDays(1)))
-                .collect(Collectors.toList());
-        return pontosNoPeriodo;
+        return pontosUsuario.stream().collect(Collectors.toList());
     }
 }
