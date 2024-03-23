@@ -6,15 +6,18 @@ public class Ponto {
     private String id;
     private String usuario;
     private String data;
+    private TipoPonto tipo;
 
     public Ponto(
             String id,
             String usuario,
-            String data
+            String data,
+            TipoPonto tipo
     ) {
         this.id = id;
         this.usuario = usuario;
         this.data = data;
+        this.tipo = tipo;
     }
 
     public String getId() {
@@ -41,7 +44,11 @@ public class Ponto {
         this.data = data;
     }
 
-    public Ponto toDomain() {
-        return new Ponto(id, usuario, data);
+    public TipoPonto getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoPonto tipo) {
+        this.tipo = tipo;
     }
 }
