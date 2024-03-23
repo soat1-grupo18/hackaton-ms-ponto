@@ -30,6 +30,7 @@ public class DynamoDBConfig {
     @Profile("!local")
     public AmazonDynamoDB productionAmazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard()
+            .withRegion(awsRegion)
             .build();
     }
 
