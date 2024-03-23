@@ -2,26 +2,22 @@ package br.com.fiap.soat.pontos.api.requests;
 
 import br.com.fiap.soat.pontos.entities.Ponto;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class PontoRequest {
-    private String id;
     private String usuario;
-
-    Instant currentInstant = Instant.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    String data = formatter.format(currentInstant.atOffset(ZoneOffset.UTC));
+    private String data;
 
     public Ponto toDomain() {
-        Ponto ponto = new Ponto(null, usuario, data);
-
-        return ponto;
-    }
-
-    public String getId() {
-        return id;
+        String dataHora = data;
+        if (dataHora == null || dataHora.isEmpty())
+            dataHora = LocalDateTime.now().toString();
+        if (!isValidTimestamp(dataHora)) {
+            throw new IllegalArgumentException("A data informada não está no formato ISO (YYYY-MM-DDTHH:MM:SS).");
+        }
+        return new Ponto(null, usuario, dataHora);
     }
 
     public String getUsuario() {
@@ -30,5 +26,14 @@ public class PontoRequest {
 
     public String getData() {
         return data;
+    }
+
+    private boolean isValidTimestamp(String timestamp) {
+        try {
+            LocalDateTime.parse(timestamp, DateTimeFormatter.ISO_DATE_TIME);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 }

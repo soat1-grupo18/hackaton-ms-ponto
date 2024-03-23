@@ -1,8 +1,8 @@
 package br.com.fiap.soat.pontos.controllers;
 
+import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.interfaces.usecases.CriarPontoUseCasePort;
 import br.com.fiap.soat.pontos.interfaces.usecases.ObterPontosPorUsuarioUseCasePort;
-import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.presenters.PontoPresenter;
 
 import java.util.List;
@@ -23,8 +23,8 @@ public class PontoController {
         return PontoPresenter.fromDomain(criarPontoUseCase.execute(ponto));
     }
 
-    public List<PontoPresenter> obterPontosPorUsuario(String usuario) {
-        List<Ponto> pontos = obterPontosPorUsuarioUseCase.execute(usuario);
+    public List<PontoPresenter> obterPontosPorUsuario(String usuario, String dataInicial, String dataFinal) {
+        List<Ponto> pontos = obterPontosPorUsuarioUseCase.execute(usuario, dataInicial, dataFinal);
         return pontos.stream().map(PontoPresenter::fromDomain).collect(Collectors.toList());
     }
 }

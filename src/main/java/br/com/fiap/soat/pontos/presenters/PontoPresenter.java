@@ -1,6 +1,8 @@
 package br.com.fiap.soat.pontos.presenters;
 import br.com.fiap.soat.pontos.entities.Ponto;
 
+import java.time.LocalDate;
+
 public class PontoPresenter {
     private String id;
     private String usuario;

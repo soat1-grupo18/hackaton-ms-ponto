@@ -1,5 +1,7 @@
 package br.com.fiap.soat.pontos.entities;
 
+import java.time.LocalDate;
+
 public class Ponto {
     private String id;
     private String usuario;
@@ -15,32 +17,31 @@ public class Ponto {
         this.data = data;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
-    public String getId() {
-        return id;
+
+    public String getUsuario() {
+        return usuario;
     }
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    public String getUsuario() {
-        return usuario;
+
+    public String getData() {
+        return data;
     }
 
     public void setData(String data) {
         this.data = data;
     }
-    public String getData() {
-        return data;
-    }
 
     public Ponto toDomain() {
-        return new Ponto(
-                id,
-                usuario,
-                data
-        );
+        return new Ponto(id, usuario, data);
     }
 }

@@ -8,6 +8,14 @@ module "name" {
     {
       name  = "SPRING_PROFILES_ACTIVE"
       value = "aws"
+    },
+    {
+      name  = "SERVER_PORT"
+      value = "8080"
+    },
+    {
+      name  = "SPRING_DATA_DYNAMODB_ENTITY2DDL_AUTO"
+      value = "none"
     }
   ]
   app_health_check_path = "/actuator/health"

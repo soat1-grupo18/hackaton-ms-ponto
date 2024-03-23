@@ -1,16 +1,13 @@
 package br.com.fiap.soat.pontos.gateways;
 
-import br.com.fiap.soat.pontos.api.requests.PontoRequest;
-import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.dynamodb.entities.PontoDynamoEntity;
 import br.com.fiap.soat.pontos.dynamodb.repositories.PontoRepository;
+import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.interfaces.gateways.PontoGatewayPort;
-
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,8 +26,15 @@ public class PontoGateway implements PontoGatewayPort {
     }
 
     @Override
-    public List<Ponto> obterPontosPorUsuario(String usuario) {
-        List<PontoDynamoEntity> entities = pontoRepository.findByUsuario(usuario);
+    public List<Ponto> obterPontosPorUsuario(String usuario, String dataInicial, String dataFinal) {
+        List<PontoDynamoEntity> entities;
+
+        if (dataInicial != null && dataFinal != null) {
+            entities = pontoRepository.findByUsuarioAndDataBetween(usuario, dataInicial, dataFinal);
+        } else {
+            entities = pontoRepository.findByUsuario(usuario);
+        }
+
         List<Ponto> pontos = entities.stream()
                 .filter(Objects::nonNull)
                 .map(PontoDynamoEntity::toDomain)
