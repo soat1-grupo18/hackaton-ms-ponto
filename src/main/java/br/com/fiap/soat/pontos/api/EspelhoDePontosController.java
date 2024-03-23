@@ -29,6 +29,12 @@ public class EspelhoDePontosController {
 
         List<Ponto> pontos = obterEspelhoDePontosUsuarioUseCase.obterEspelhoDePontosPorUsuarioEPeriodo(usuario, dataInicio, dataFim);
 
+        enviarRelatorioDePontos("exemplo@email.com", "Relatório de pontos do mês...");
+
         return ResponseEntity.ok(pontos);
+    }
+    private void enviarRelatorioDePontos(String destinatario, String mensagem) {
+        // Lógica para enviar o relatório de pontos
+        System.out.println("Simulação: Relatório de pontos enviado para " + destinatario + ": " + mensagem);
     }
 }
