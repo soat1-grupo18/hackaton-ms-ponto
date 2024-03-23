@@ -1,8 +1,8 @@
 package br.com.fiap.soat.pontos.controllers;
 
+import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.interfaces.usecases.CriarPontoUseCasePort;
 import br.com.fiap.soat.pontos.interfaces.usecases.ObterPontosPorUsuarioUseCasePort;
-import br.com.fiap.soat.pontos.entities.Ponto;
 import br.com.fiap.soat.pontos.presenters.PontoPresenter;
 
 import java.util.List;

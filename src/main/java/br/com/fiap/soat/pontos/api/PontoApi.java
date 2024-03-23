@@ -7,10 +7,9 @@ import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -51,4 +50,4 @@ public class PontoApi {
             return ResponseEntity.status(500).build();
         }
     }
-}
+ }
