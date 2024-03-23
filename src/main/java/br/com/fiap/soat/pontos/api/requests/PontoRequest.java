@@ -13,10 +13,7 @@ public class PontoRequest {
     Instant currentInstant = Instant.now();
 
     public Ponto toDomain() {
-
-        LocalDate localDate = LocalDate.parse(data);
-        Ponto ponto = new Ponto(null, usuario, localDate);
-
+        Ponto ponto = new Ponto(null, usuario, data);
         return ponto;
     }
 

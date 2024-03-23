@@ -9,8 +9,6 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttri
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 
-import java.time.LocalDate;
-
 @DynamoDbBean
 @DynamoDBTable(tableName = "Pontos")
 public class PontoDynamoEntity {
@@ -22,8 +20,7 @@ public class PontoDynamoEntity {
     private String usuario;
 
     @DynamoDBAttribute(attributeName = "data")
-    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
-    private LocalDate data;
+    private String data;
 
     @DynamoDbPartitionKey
     @DynamoDbAttribute("id")
@@ -45,11 +42,11 @@ public class PontoDynamoEntity {
     }
 
     @DynamoDbAttribute("data")
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -70,6 +67,4 @@ public class PontoDynamoEntity {
                 data
         );
     }
-
-
 }

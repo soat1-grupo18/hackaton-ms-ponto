@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Ponto {
     private String id;
     private String usuario;
-    private LocalDate data;
+    private String data;
 
     public Ponto(
             String id,
             String usuario,
-            LocalDate data
+            String data
     ) {
         this.id = id;
         this.usuario = usuario;
@@ -33,11 +33,11 @@ public class Ponto {
         this.usuario = usuario;
     }
 
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(String data) {
         this.data = data;
     }
 

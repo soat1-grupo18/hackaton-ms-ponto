@@ -20,9 +20,9 @@ public class EspelhoPontoGateway implements EspelhoPontoGatewayPort {
 
     @Override
     public List<Ponto> obterPontosPorUsuarioEPeriodo(String usuario, LocalDate dataInicio, LocalDate dataFim) {
-        List<Ponto> pontosUsuario = pontoGatewayPort.obterPontosPorUsuario(usuario);
+        List<Ponto> pontosUsuario = pontoGatewayPort.obterPontosPorUsuario(usuario, dataInicio.toString(), dataFim.toString());
         List<Ponto> pontosNoPeriodo = pontosUsuario.stream()
-                .filter(ponto -> ponto.getData().isAfter(dataInicio.minusDays(1)) && ponto.getData().isBefore(dataFim.plusDays(1)))
+                .filter(ponto -> LocalDate.parse(ponto.getData()).isAfter(dataInicio.minusDays(1)) && LocalDate.parse(ponto.getData()).isBefore(dataFim.plusDays(1)))
                 .collect(Collectors.toList());
         return pontosNoPeriodo;
     }

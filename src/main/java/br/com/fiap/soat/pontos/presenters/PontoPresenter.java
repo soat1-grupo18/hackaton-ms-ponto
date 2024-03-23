@@ -6,9 +6,9 @@ import java.time.LocalDate;
 public class PontoPresenter {
     private String id;
     private String usuario;
-    private LocalDate data;
+    private String data;
 
-    public PontoPresenter(String id, String usuario, LocalDate data) {
+    public PontoPresenter(String id, String usuario, String data) {
         this.id = id;
         this.usuario = usuario;
         this.data = data;
@@ -28,7 +28,7 @@ public class PontoPresenter {
     public String getUsuario() {
         return usuario;
     }
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 }
